@@ -12,7 +12,7 @@ namespace Lab4Auth.Controllers
     [Authorize] //dodanie atrybutu przed kontrolerem blokuje wszystkie metody
     public class HomeController : Controller
     {
-        private ApplicationDbContext _db; //
+        private ApplicationDbContext _db; 
 
         public HomeController()
         {

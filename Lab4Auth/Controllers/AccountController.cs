@@ -156,10 +156,6 @@ namespace Lab4Auth.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //Kod tymczasowy w celu zarejestrowania użytkownika z uprawnieniem do dodawania klientów
-                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                    var roleManager = new RoleManager<IdentityRole>(roleStore);
-                   await roleManager.CreateAsync(new IdentityRole("CanAddCustomers"));
 
                   await  UserManager.AddToRoleAsync(user.Id, "CanAddCustomers");
 

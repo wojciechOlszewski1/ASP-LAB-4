@@ -27,6 +27,7 @@ namespace Lab4Auth.Controllers
             return View(_db.Customers.Include(x => x.City).ToList());
         }
 
+        [Authorize] // zabezpiecza dostęp w przypadku niezalogowanych użytkowników
         public ActionResult CreateCustomer() // formularz dla nowego użytkownika
         {
             var cities = _db.Cities.ToList();

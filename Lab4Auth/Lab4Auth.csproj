@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201810241737156_start.Designer.cs">
       <DependentUpon>201810241737156_start.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810241923467_addYearsToUser.cs" />
+    <Compile Include="Migrations\201810241923467_addYearsToUser.Designer.cs">
+      <DependentUpon>201810241923467_addYearsToUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\City.cs" />
@@ -293,6 +297,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810241737156_start.resx">
       <DependentUpon>201810241737156_start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810241923467_addYearsToUser.resx">
+      <DependentUpon>201810241923467_addYearsToUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

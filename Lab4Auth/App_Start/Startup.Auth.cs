@@ -54,9 +54,9 @@ namespace Lab4Auth
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "264182197619511",
-               appSecret: "");
+            //app.UseFacebookAuthentication(
+            //   appId: "264182197619511",
+            //   appSecret: "");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

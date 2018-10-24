@@ -8,6 +8,7 @@ namespace Lab4Auth.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public int Year { get; set; }
     }
 
     public class ExternalLoginListViewModel

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Lab4Auth.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Lab4Auth.Controllers
 {
@@ -155,6 +156,13 @@ namespace Lab4Auth.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //Kod tymczasowy w celu zarejestrowania użytkownika z uprawnieniem do dodawania klientów
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                   await roleManager.CreateAsync(new IdentityRole("CanAddCustomers"));
+
+                  await  UserManager.AddToRoleAsync(user.Id, "CanAddCustomers");
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

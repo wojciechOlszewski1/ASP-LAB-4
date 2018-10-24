@@ -29,7 +29,7 @@ namespace Lab4Auth.Controllers
             return View(_db.Customers.Include(x => x.City).ToList());
         }
 
-        
+        [Authorize(Roles = "CanAddCustomers")]
         public ActionResult CreateCustomer() 
         {
             var cities = _db.Cities.ToList();
@@ -40,7 +40,7 @@ namespace Lab4Auth.Controllers
             };
             return View("CustomerForm", customersWithCityView);
         }
-
+      
         public ActionResult EditCustomer(int id) 
         {
             var customer = _db.Customers.SingleOrDefault(x => x.Id == id);

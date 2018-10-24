@@ -9,6 +9,7 @@ using Lab4Auth.ViewModels;
 
 namespace Lab4Auth.Controllers
 {
+    [Authorize] //dodanie atrybutu przed kontrolerem blokuje wszystkie metody
     public class HomeController : Controller
     {
         private ApplicationDbContext _db; //
@@ -17,18 +18,19 @@ namespace Lab4Auth.Controllers
         {
             _db = new ApplicationDbContext();
         }
-        protected override void Dispose(bool disposing) // niszczenie obiektu 
+        protected override void Dispose(bool disposing) 
         {
             _db.Dispose();
         }
 
+        [AllowAnonymous] // dodanie tego atrybutu w przypadku kiedy nad kontrolerem jest atrybut [Authorize], pozwala niezalogowanym użytkownikom na dostęp 
         public ActionResult Index()
         {
             return View(_db.Customers.Include(x => x.City).ToList());
         }
 
-        [Authorize] // zabezpiecza dostęp w przypadku niezalogowanych użytkowników
-        public ActionResult CreateCustomer() // formularz dla nowego użytkownika
+        
+        public ActionResult CreateCustomer() 
         {
             var cities = _db.Cities.ToList();
             CustomersWithCityViewModel customersWithCityView = new CustomersWithCityViewModel()
@@ -39,7 +41,7 @@ namespace Lab4Auth.Controllers
             return View("CustomerForm", customersWithCityView);
         }
 
-        public ActionResult EditCustomer(int id) // edycja istniejącego użytkownika
+        public ActionResult EditCustomer(int id) 
         {
             var customer = _db.Customers.SingleOrDefault(x => x.Id == id);
             if (customer == null)
@@ -55,7 +57,7 @@ namespace Lab4Auth.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCustomer(Customer customer) // dodawanie do bazy danych
+        public ActionResult AddCustomer(Customer customer) 
         {
             if (ModelState.IsValid)
             {
